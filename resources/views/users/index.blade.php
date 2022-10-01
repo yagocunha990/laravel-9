@@ -6,7 +6,7 @@
 
             @section('content')
 
-            <h1>LISTAGEM DOS USUARIOS
+            <h1  >LISTAGEM DOS USUARIOS
             ( <a href="{{route('users.create')}}">Cadastrar Usuario</a>)
             </h1>
 
