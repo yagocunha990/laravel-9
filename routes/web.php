@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\{UserController};
+use App\Http\Controllers\Admin\{ComentController};
+use App\Models\Comment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +33,10 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 Route::get('/', function () {
     return view('welcome');
 });
+
+//comentario index
+Route::get('/users/{id}/comments', [ComentController::class, 'index'])->name('comments.index');
+//create usuario
+Route::get('/users/{id}/comments/create', [ComentController::class, 'create'])->name('comments.create');
+//create store
+Route::post('/users/{id}/comments', [ComentController::class, 'store'])->name('comments.store');
