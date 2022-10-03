@@ -40,3 +40,7 @@ Route::get('/users/{id}/comments', [ComentController::class, 'index'])->name('co
 Route::get('/users/{id}/comments/create', [ComentController::class, 'create'])->name('comments.create');
 //create store
 Route::post('/users/{id}/comments', [ComentController::class, 'store'])->name('comments.store');
+//editar
+Route::get('/users/{user}/comments/{id}', [ComentController::class, 'edit'])->name('comments.edit');
+//update
+Route::put('/comments/{id}', [ComentController::class, 'update'])->name('comments.update');

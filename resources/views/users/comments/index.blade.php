@@ -20,8 +20,8 @@
         @foreach ($comments as $comment)
         <li>
                 {{$comment->body}} - {{$comment->visible ? 'SIM' : 'NÃO'}}
-                
-                | <a href="#">Editar</a>
+                | <a href="{{route('comments.edit', ['user' => $user->id,'id'=> $comment->id ])}}">Editar</a>
+
         </li>
         @endforeach
 

@@ -1,7 +1,11 @@
 @csrf
-<textarea name="body" id="" cols="30" rows="10" placeholder="Comentário"></textarea>
+<textarea name="body" id="" cols="30" rows="10" placeholder="Comentário">{{$comment->body ?? old('body')}}</textarea>
 <label for="visible">
-    <input type="checkbox" name="visible" id="">
+    <input type="checkbox" name="visible" id=""
+    @if (isset($comment) && $comment->visible)
+            checked="checked"
+    @endif
+    >
     Visível
 </label>
 
