@@ -17,12 +17,15 @@ class ComentController extends Controller{
 
     }
 
-    public function index($userId){
+    public function index(Request $request, $userId){
 
         if(!$user = $this->user->find($userId)){
             return redirect()->back();
         }
-        $comments = $user->comments()->get();
+        
+        $comments = $user->comments()
+        ->where('body', 'LIKE',"%{$request->search}%")
+        ->get();
         return view('users.comments.index', compact('user', 'comments'));
     }
 
