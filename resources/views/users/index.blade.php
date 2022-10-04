@@ -26,6 +26,11 @@
             </li>
             @endforeach
 
-            </ul>
 
+        </ul>
+
+        <div>{{$users->appends([
+            'search' => request()->get('search','')
+        ])->links()}}
+        </div>
 @endsection
