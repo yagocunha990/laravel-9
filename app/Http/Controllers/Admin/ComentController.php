@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreUpdateCommentRequest;
 
 class ComentController extends Controller{
     protected $model;
@@ -22,7 +23,7 @@ class ComentController extends Controller{
         if(!$user = $this->user->find($userId)){
             return redirect()->back();
         }
-        
+
         $comments = $user->comments()
         ->where('body', 'LIKE',"%{$request->search}%")
         ->get();
@@ -38,7 +39,7 @@ class ComentController extends Controller{
         return view('users.comments.create', compact('user'));
     }
     ////////////////////////////////////////////
-    public function store(Request $request, $userId){
+    public function store(StoreUpdateCommentRequest $request, $userId){
 
         if(!$user = $this->user->find($userId)){
             return redirect()->back();
@@ -61,7 +62,7 @@ public function edit($userId, $id){
     return view('users.comments.edit', compact('user','comment'));
 }
 ////////////////////////////////////////////
-public function update(Request $request,$id){
+public function update(StoreUpdateCommentRequest $request,$id){
 
     if(!$comment = $this->comment->find($id)){
         return redirect()->back();
