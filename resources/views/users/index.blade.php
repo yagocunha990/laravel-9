@@ -19,6 +19,11 @@
 
             @foreach ($users as $user)
             <li>
+                @if ($user->image)
+                <img style="width:100px; height:100px " src="{{url("storage/{$user->image}")}}" alt="{{$user->name}}">
+                @else
+                <img src="{{url("images/favicon.ico")}}" alt="{{$user->name}}">
+                @endif
                     {{$user->name}} - {{$user->email}}
                     | <a href="{{route('users.edit', $user->id)}}">Editar</a>
                     | <a href="{{route('users.show', $user->id)}}">Detalhes</a>
