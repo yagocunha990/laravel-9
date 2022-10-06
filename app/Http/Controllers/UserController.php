@@ -77,7 +77,7 @@ class UserController extends Controller{
 
         if($request->image){
 
-            if($user->image && Storage::exists($user->image)){
+            if($user->image &&  Storage::exists($user->image)){
             Storage::delete($user->image);
            }
 

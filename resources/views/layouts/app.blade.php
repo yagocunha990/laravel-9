@@ -11,6 +11,10 @@
 <body class="bg-gray-50">
 
     <div class="app">
+        <form action="{{route('logout')}}" method="post">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
         @yield('content')
     </div>
 </body>

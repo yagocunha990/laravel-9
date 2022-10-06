@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\{UserController};
 use App\Http\Controllers\Admin\{ComentController};
 use App\Models\Comment;
-use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users',[UserController::class, 'index'])->name('users.index');
+Route::middleware(['auth'])->group(function(){
+    Route::get('/users',[UserController::class, 'index'])->name('users.index');
 
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users',[UserController::class, 'store'])->name('users.store');
@@ -30,9 +33,7 @@ Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update
 Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 //comentario index
 Route::get('/users/{id}/comments', [ComentController::class, 'index'])->name('comments.index');
@@ -44,3 +45,15 @@ Route::post('/users/{id}/comments', [ComentController::class, 'store'])->name('c
 Route::get('/users/{user}/comments/{id}', [ComentController::class, 'edit'])->name('comments.edit');
 //update
 Route::put('/comments/{id}', [ComentController::class, 'update'])->name('comments.update');
+
+
+});
+
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+require __DIR__.'/auth.php';
